@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS assets CASCADE;
+
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255),
+  hashed_password VARCHAR(255)
+);
+
+CREATE TABLE images(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(50), 
+  url TEXT,
+  tags TEXT,
+  privacy BOOLEAN DEFAULT TRUE
+);
